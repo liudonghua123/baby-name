@@ -1,16 +1,16 @@
-const fs = require('fs');
+import fs from 'fs';
 // https://github.com/yanyiwu/nodejieba
-const nodejieba = require('nodejieba');
+import nodejieba from 'nodejieba';
 nodejieba.load();
 // https://github.com/theajack/cnchar
-const cnchar = require('cnchar');
-const poly = require('cnchar-poly');
-const order = require('cnchar-order');
-const trad = require('cnchar-trad');
+import cnchar from 'cnchar';
+import poly from 'cnchar-poly';
+import order from 'cnchar-order';
+import trad from 'cnchar-trad';
 cnchar.use(poly, order, trad);
 // https://github.com/hotoo/pinyin
-const pinyin = require('pinyin');
-const readline = require('readline');
+import pinyin from 'pinyin';
+import readline from 'readline';
 
 const getTwoWordsFromPoetryAndChu = () => {
   const poetryContents = fs.readFileSync('resources/诗经.txt');
@@ -79,8 +79,11 @@ const getTwoWordsFromHistoryName = () => {
 };
 
 (async () => {
+  console.info(`extract two words from poetry and chu`);
   const poetryAndChuTwoWords = getTwoWordsFromPoetryAndChu();
+  console.info(`extract two words from idioms`);
   const idiomTwoWords = await getTwoWordsFromIdioms();
+  console.info(`extract two words from history name`);
   const historyNameTwoWords = await getTwoWordsFromHistoryName();
   // filter the 9-23, 10-7, 9-7, 22-15, 2-14, 20-4, 8-24, 3-14
   const goodStroke = ['9-23', '10-7', '9-7', '22-15', '2-14', '20-4', '8-24', '3-14'];
@@ -100,21 +103,21 @@ const getTwoWordsFromHistoryName = () => {
   let output = '';
   let niceEnrichedTwoWords = [];
   niceEnrichedTwoWords = filterNiceName(poetryAndChuTwoWords, goodStroke);
-  output += '\n\n\n------------ poetry and chu candidateNames ------------';
+  output += '\n\n\n------------ poetry and chu candidate names ------------';
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join('-')},${cur.traditionStroke.join('-')}`,
     ''
   );
   niceEnrichedTwoWords = filterNiceName(idiomTwoWords, goodStroke);
-  output += '\n\n\n------------ idiom candidateNames ------------';
+  output += '\n\n\n------------ idiom candidate names ------------';
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join('-')},${cur.traditionStroke.join('-')}`,
     ''
   );
   niceEnrichedTwoWords = filterNiceName(historyNameTwoWords, goodStroke);
-  output += '\n\n\n------------ historyName candidateNames ------------';
+  output += '\n\n\n------------ history candidate names ------------';
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join('-')},${cur.traditionStroke.join('-')}`,
