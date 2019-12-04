@@ -11,6 +11,37 @@ cnchar.use(poly, order, trad);
 // https://github.com/hotoo/pinyin
 import pinyin from 'pinyin';
 import readline from 'readline';
+// https://github.com/marga8080/scbz/blob/master/src/App.js
+import Lunar from './utils/Lunar';
+import Horoscope from './utils/Horoscope';
+
+const date = new Date();
+let lunar = Lunar.calc(date);
+let scbz = Horoscope.calc(date);
+/*
+lunar: {
+  "year": 2019,   
+  "isLeap": false,
+  "month": 11,
+  "day": 9,
+  "cYear": "己亥",
+  "cMonth": "十一月",
+  "cDay": "初九",
+  "str": "己亥年十一月初九"
+}
+scbz: {
+  "nz": "己亥",
+  "yz": "乙亥",
+  "rz": "乙亥",
+  "sz": "丁亥",
+  "bz": "己亥、乙亥、乙亥、丁亥",
+  "wx": "土水、木水、木水、火水",
+  "fw": "中北、东北、东北、南北",
+  "shishen": "偏财、比肩、日主、食神"
+}
+*/
+console.info(`lunar: ${JSON.stringify(lunar, null, 2)}`);
+console.info(`scbz: ${JSON.stringify(scbz, null, 2)}`);
 
 const getTwoWordsFromPoetryAndChu = () => {
   const poetryContents = fs.readFileSync('resources/诗经.txt');
