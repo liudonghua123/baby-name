@@ -4,8 +4,8 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/app.js",
-    "build": "babel src --out-dir dist --copy-files",
+    "start": "nodemon --exec ts-node src/app.ts",
+    "build": "babel src --out-dir dist --copy-files --extensions '.js,.jsx,.ts,.tsx'",
     "serve": "node dist/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,7 +25,16 @@
     "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.4",
     "@babel/node": "^7.7.4",
-    "@babel/preset-env": "^7.7.4",
-    "nodemon": "^2.0.1"
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-typescript": "^7.7.4",
+    "@types/cheerio": "^0.22.15",
+    "@types/pinyin": "^2.8.1",
+    "@types/request": "^2.48.3",
+    "@types/request-promise": "^4.1.45",
+    "nodemon": "^2.0.1",
+    "ts-node": "^8.5.4",
+    "typescript": "^3.7.3"
   }
 }
