@@ -123,8 +123,8 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
     // add tradition and stroke info
     let enrichedTwoWords = candidateTwoWords.map(simple => {
       const tradition = cnchar.convert.simpleToTrad(simple);
-      const simpleStroke = cnchar.stroke(simple, 'array');
-      const traditionStroke = cnchar.stroke(tradition, 'array');
+      const simpleStroke = cnchar.stroke(simple, 'array') as number[];
+      const traditionStroke = cnchar.stroke(tradition, 'array') as number[];
       return { simple, tradition, simpleStroke, traditionStroke };
     });
     // filter by strokes

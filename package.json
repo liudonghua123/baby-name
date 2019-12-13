@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "cnchar-all": "^2.0.4",
+    "cnchar-all": "^2.0.6",
     "iconv-lite": "^0.5.0",
     "nodejieba": "^2.3.3",
     "pinyin": "^2.9.0",
