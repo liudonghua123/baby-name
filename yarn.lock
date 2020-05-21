@@ -1219,35 +1219,35 @@ cli-width@^2.0.0:
   resolved "https://registry.npmjs.org/cli-width/-/cli-width-2.2.1.tgz#b0433d0b4e9c847ef18868a4ef16fd5fc8271c48"
   integrity sha512-GRMWDxpOB6Dgk2E5Uo+3eEBvtOOlimMmpbFiKuLFnQzYDavtLFY3K5ona41jgN/WdRZtG7utuVSVTL4HbZHGkw==
 
-cnchar-all@^2.0.4:
-  version "2.0.4"
-  resolved "http://r.cnpmjs.org/cnchar-all/download/cnchar-all-2.0.4.tgz#a732216362fb37d1f051c0817f59e1a5c91d2569"
-  integrity sha1-pzIhY2L7N9HwUcCBf1nhpckdJWk=
+cnchar-all@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.cnpmjs.org/cnchar-all/download/cnchar-all-2.0.6.tgz#81e473e0bbe47446f39d76f3d513f917632e2a37"
+  integrity sha1-geRz4LvkdEbznXbz1RP5F2MuKjc=
   dependencies:
-    cnchar "^2.0.4"
-    cnchar-order "^2.0.4"
-    cnchar-poly "^2.0.4"
-    cnchar-trad "^2.0.4"
+    cnchar "^2.0.6"
+    cnchar-order "^2.0.6"
+    cnchar-poly "^2.0.6"
+    cnchar-trad "^2.0.6"
 
-cnchar-order@^2.0.4:
-  version "2.0.4"
-  resolved "http://r.cnpmjs.org/cnchar-order/download/cnchar-order-2.0.4.tgz#343b3c30430e0fcda78e56ae76c9ef7fde71cee7"
-  integrity sha1-NDs8MEMOD82njlaudsnvf95xzuc=
+cnchar-order@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.cnpmjs.org/cnchar-order/download/cnchar-order-2.0.6.tgz#b08a75684270c51f287d2e122010c7360e3d6928"
+  integrity sha1-sIp1aEJwxR8ofS4SIBDHNg49aSg=
 
-cnchar-poly@^2.0.4:
-  version "2.0.4"
-  resolved "http://r.cnpmjs.org/cnchar-poly/download/cnchar-poly-2.0.4.tgz#ba2f6801cb69c0ecf83fa67dfb8cc201a172beea"
-  integrity sha1-ui9oActpwOz4P6Z9+4zCAaFyvuo=
+cnchar-poly@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.cnpmjs.org/cnchar-poly/download/cnchar-poly-2.0.6.tgz#b71e7ac80d650d30f82646605dcade48ac1f456e"
+  integrity sha1-tx56yA1lDTD4JkZgXcreSKwfRW4=
 
-cnchar-trad@^2.0.4:
-  version "2.0.4"
-  resolved "http://r.cnpmjs.org/cnchar-trad/download/cnchar-trad-2.0.4.tgz#784a1e05b086f58d02518cb2d5c27d7839383f0b"
-  integrity sha1-eEoeBbCG9Y0CUYyy1cJ9eDk4Pws=
+cnchar-trad@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.cnpmjs.org/cnchar-trad/download/cnchar-trad-2.0.6.tgz#4489a55b25815a7d1573beefd4c4b875bf9b375b"
+  integrity sha1-RImlWyWBWn0Vc77v1MS4db+bN1s=
 
-cnchar@^2.0.4:
-  version "2.0.4"
-  resolved "http://r.cnpmjs.org/cnchar/download/cnchar-2.0.4.tgz#2685fad80b48d0e486241b2d84dc6205cdc17a5b"
-  integrity sha1-JoX62AtI0OSGJBsthNxiBc3Bels=
+cnchar@^2.0.6:
+  version "2.0.6"
+  resolved "http://r.cnpmjs.org/cnchar/download/cnchar-2.0.6.tgz#4a5b0467ecee70c0487b586e444ca8b29f50e207"
+  integrity sha1-SlsEZ+zucMBIe1huREyosp9Q4gc=
 
 code-point-at@^1.0.0:
   version "1.1.0"
