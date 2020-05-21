@@ -1,8 +1,9 @@
 import fs from 'fs';
 // https://github.com/yanyiwu/nodejieba
-import nodejieba from 'nodejieba';
+import nodejieba, { extractWithWords } from 'nodejieba';
 nodejieba.load({});
 // https://github.com/theajack/cnchar
+import inquirer from 'inquirer';
 import cnchar from 'cnchar';
 import poly from 'cnchar-poly';
 import order from 'cnchar-order';
@@ -14,6 +15,7 @@ import readline from 'readline';
 // https://github.com/marga8080/scbz/blob/master/src/App.js
 import Lunar from './utils/Lunar';
 import Horoscope from './utils/Horoscope';
+import goodStrokes from './goodStrokes'
 
 const date = new Date();
 let lunar = Lunar.calc(date);
@@ -116,8 +118,27 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
   const idiomTwoWords = await getTwoWordsFromIdioms();
   console.info(`extract two words from history name`);
   const historyNameTwoWords = await getTwoWordsFromHistoryName();
-  // filter the 9-23, 10-7, 9-7, 22-15, 2-14, 20-4, 8-24, 3-14
-  const goodStroke = ['9-23', '10-7', '9-7', '22-15', '2-14', '20-4', '8-24', '3-14'];
+  // https://github.com/flatiron/prompt
+
+  const { familyName } = await inquirer.prompt(
+    {
+      type: 'input',
+      name: 'familyName',
+      message: 'What\'s your family name?',
+      default: '刘'
+    });
+  let goodStroke: string[] = [];
+  for (let familyNames in goodStrokes) {
+    if (familyNames.includes(familyName)) {
+      goodStroke = goodStrokes[familyNames];
+      break;
+    }
+  }
+  if (goodStroke.length == 0) {
+    console.info(`Not Found goodStroke for ${familyName}`);
+    process.exit(1);
+  }
+  console.info(`Found ${goodStroke} for ${familyName}`);
 
   const filterNiceName = (candidateTwoWords: any[], strokes: string[]) => {
     // add tradition and stroke info
@@ -129,7 +150,7 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
     });
     // filter by strokes
     const niceEnrichedTwoWords = enrichedTwoWords.filter(item =>
-      strokes.includes(item.traditionStroke.join('-'))
+      strokes.includes(item.traditionStroke.join('+'))
     );
     return niceEnrichedTwoWords;
   };
@@ -140,8 +161,8 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join(
-        '-'
-      )},${cur.traditionStroke.join('-')}`,
+        '+'
+      )},${cur.traditionStroke.join('+')}`,
     ''
   );
   niceEnrichedTwoWords = filterNiceName(idiomTwoWords, goodStroke);
@@ -149,8 +170,8 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join(
-        '-'
-      )},${cur.traditionStroke.join('-')}`,
+        '+'
+      )},${cur.traditionStroke.join('+')}`,
     ''
   );
   niceEnrichedTwoWords = filterNiceName(historyNameTwoWords, goodStroke);
@@ -158,8 +179,8 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join(
-        '-'
-      )},${cur.traditionStroke.join('-')}`,
+        '+'
+      )},${cur.traditionStroke.join('+')}`,
     ''
   );
   fs.writeFileSync('output.txt', output);
