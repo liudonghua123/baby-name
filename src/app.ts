@@ -16,6 +16,7 @@ import readline from 'readline';
 import Lunar from './utils/Lunar';
 import Horoscope from './utils/Horoscope';
 import goodStrokes from './goodStrokes'
+import poetryChuExtras from './poetryChuExtras.json'
 
 const date = new Date();
 let lunar = Lunar.calc(date);
@@ -69,6 +70,10 @@ const getTwoWordsFromPoetryAndChu = (): any[] => {
   return twoWords;
 };
 
+const getTwoWordsFromPoetryAndChuExtras = (): any[] => {
+  return poetryChuExtras.names;
+};
+
 const getTwoWordsFromIdioms = (): Promise<any[]> => {
   return new Promise((resolve, reject) => {
     const fRead = fs.createReadStream('resources/THUOCL_chengyu.txt');
@@ -114,6 +119,7 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
 (async () => {
   console.info(`extract two words from poetry and chu`);
   const poetryAndChuTwoWords = getTwoWordsFromPoetryAndChu();
+  const poetryAndChuTwoWordsExtras = getTwoWordsFromPoetryAndChuExtras();
   console.info(`extract two words from idioms`);
   const idiomTwoWords = await getTwoWordsFromIdioms();
   console.info(`extract two words from history name`);
@@ -158,6 +164,15 @@ const getTwoWordsFromHistoryName = (): Promise<any[]> => {
   let niceEnrichedTwoWords = [];
   niceEnrichedTwoWords = filterNiceName(poetryAndChuTwoWords, goodStroke);
   output += '\n\n\n------------ poetry and chu candidate names ------------';
+  output += niceEnrichedTwoWords.reduce(
+    (pre, cur) =>
+      `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join(
+        '+'
+      )},${cur.traditionStroke.join('+')}`,
+    ''
+  );
+  niceEnrichedTwoWords = filterNiceName(poetryAndChuTwoWordsExtras, goodStroke);
+  output += '\n\n\n------------ poetry and chu extras candidate names ------------';
   output += niceEnrichedTwoWords.reduce(
     (pre, cur) =>
       `${pre}\n${cur.simple},${cur.tradition},${cur.simpleStroke.join(
