@@ -18,7 +18,7 @@ import Horoscope from './utils/Horoscope';
 import goodStrokes from './goodStrokes'
 import poetryChuExtras from './poetryChuExtras.json'
 
-const date = new Date();
+const date = new Date(2025, 0, 5, 17, 12, 0, 0);
 let lunar = Lunar.calc(date);
 let scbz = Horoscope.calc(date);
 /*
